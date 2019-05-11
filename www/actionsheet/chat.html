@@ -1,0 +1,40 @@
+<div data-role="view" data-title="Chat" >
+    <header data-role="header">
+        <div data-role="navbar" class="ananav">
+            <a data-align="left" data-icon="add" data-role="button"  data-rel="modalview" href="#modalview-add"></a>
+            <span data-role="view-title">as</span>
+            <a data-align="right" data-icon="source-code" data-click="goToSourceCode" data-role="button" title="Show this demo source code"></a>
+            <a data-align="right" data-role="button" class="nav-button" data-icon="home" href="#"></a>
+        </div>
+    </header>
+<br>
+
+    
+<link href="../styles/kendo.default.min.css" rel="stylesheet">
+   
+
+<iframe id="iframes" style="border: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: calc(100vh - 47px);"></iframe>
+<style>
+
+#footernav
+{
+display:none;
+}
+</style>
+<script>
+
+
+startLoading(500);
+setTimeout(function(){ 
+
+ document.getElementById("iframes").src = "actionsheet/chat_container.html";
+
+hideLoader();
+
+}, 2000);
+
+</script>

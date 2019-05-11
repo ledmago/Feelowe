@@ -1,0 +1,105 @@
+<div data-role="view" data-title="Inbox"  data-init="mobileListViewPullToRefresh" >
+    <header data-role="header">
+        <div data-role="navbar" class="ananav">
+            <a data-align="left" data-icon="add" data-role="button"  data-rel="modalview" href="#modalview-add"></a>
+            <span data-role="view-title">as</span>
+            <a data-align="right" data-icon="source-code" data-click="goToSourceCode" data-role="button" title="Show this demo source code"></a>
+            <a data-align="right" data-role="button" class="nav-button" data-icon="home" href="#/"></a>
+        </div>
+    </header>
+<br>
+  <div id="example">
+            <div class="demo-section k-content">
+
+                <table id="movies" class="metrotable">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Rating</th>
+                            <th>Title</th>
+                            <th>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <script id="template" type="text/x-kendo-template">
+                <tr>
+                    <td>#= username #</td>
+                    <td>#= username #</td>
+                    <td>#= sifre #</td>
+                </tr>
+            </script>
+
+            <script>
+                $(document).ready(function() {
+                    // create a template using the above definition
+                    var template = kendo.template($("#template").html());
+
+                   
+
+                    var dataSource = new kendo.data.DataSource({
+                        data: users,
+                        change: function() { // subscribe to the CHANGE event of the data source
+                            $("#movies tbody").html(kendo.render(template, this.view())); // populate the table
+                        }
+                    });
+					dataSource.read();
+                    // read data from the "movies" array
+					if(users.length <=0)
+					{
+					
+						setTimeout(function(){ dataSource.read();}, 3000);
+					}
+				
+                    
+                });
+            </script>
+            <style>
+                .demo-section {
+                 overflow: auto;
+                }
+                .metrotable {
+                	width: 100%;
+                	border-collapse: collapse;
+                }
+                
+                .metrotable > thead > tr > th 
+                {
+                	font-size: 1.3em;
+                	padding-top: 0;
+                	padding-bottom: 5px;
+                }
+            </style>
+        </div>
+
+
+<!--
+<script>
+
+	function Menu3(elem) {
+  this.onSave = function() { alert('saving') }
+  this.onLoad = function() { alert('loading') }
+
+  var self = this
+
+  elem.onclick = function(e) {
+    var target = e && e.target || event.srcElement
+var action = target.getAttribute('data-action')
+    if (action) {
+      self["on"+action]()
+    }
+  }
+}
+
+new Menu3(document.getElementById('menu3'))
+
+
+</script>
+<!-->

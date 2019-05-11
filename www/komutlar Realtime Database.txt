@@ -1,0 +1,199 @@
+ 
+Sadece Değeri Kontrol Etmek
+
+			 firebase.database().ref().child("kullanicilar").orderByChild("kadi").equalTo($(this).val()).once("value",snapshot => {
+				const userData = snapshot.val();
+				if (userData){
+								// Kulalnıcı VAr  
+				}
+				else
+				{
+						//Kullancıı Yok
+				}
+				
+				
+			});
+
+
+			Tümünü Gözden Geçirir
+
+			   firebase.database().ref('kullanicilar').on('child_added', snap => {
+				if(snap.val().kadi == $(this).val()) {
+				 
+				 var
+				}
+				else{
+				yok
+				}
+			});
+			
+			
+			
+			
+			
+			
+			
+			// Kayıt Yapma
+			
+			 var islem2 = firebase.auth().createUserWithEmailAndPassword(email_kayit, sifre_kayit).then(function(firebaseUser) {
+						   console.log("Giriş Başarılı"); // Giriş İşlemi Gerçekleşti Local Storage
+						   console.log(firebaseUser.user.uid);
+							 $("#durumyazi").html("Yönelndiriliyorsunuz ....");
+							 
+							 
+							 
+						   
+									localStorage.removeItem('userUid');
+									localStorage.setItem('userUid', firebaseUser.user.uid)
+									
+									var kullanici_ekle = {uid:firebaseUser.user.uid, timestamp: new Date().toString(),adsoyad:adsoyad_kayit,email:email_kayit,kadi:kadi_kayit,sifre:sifre_kayit};
+									  var ref = firebase.database().ref().child('kullanicilar');
+									  var messageRef = ref.push(kullanici_ekle);
+									
+									window.location.href="portal.html";
+									
+						   
+						   })
+					   .catch(function(error) {
+						
+						
+						
+						
+					  // Handle Errors here.
+					  var errorCode = error.code;
+					  var errorMessage = error.message;
+					  if (errorCode === 'auth/wrong-password') {
+					   
+					   setTimeout(function(){ $("#durumyazi").html(" Hatalı Şifre Ve Email Adresi <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>"); }, 2000);
+					   
+					   
+					   
+					  } else if(errorCode === 'auth/invalid-email'){
+					  setTimeout(function(){ $("#durumyazi").html("Email Adresi Yanlış Girildi <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>"); }, 2000);
+						 
+					  }
+					  else if(errorCode === 'auth/email-already-in-use'){
+						
+						setTimeout(function(){ $("#durumyazi").html("Bu Email Adresine Kayıtlı Hesap Bulunmaktadır. <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>"); }, 3000);
+					  }
+					  
+					  console.log(error);
+					  
+					  
+					  
+					  
+					  
+					});
+					
+					
+					
+// Giriş Yapma
+
+					var islem = firebase.auth().signInWithEmailAndPassword(kadi, sifre).then(function(firebaseUser) {
+									   console.log("Giriş Başarılı"); // Giriş İşlemi Gerçekleşti Local Storage
+									   console.log(firebaseUser.user.uid);
+									   
+									   
+									   if (localStorage.getItem("userUid") === null) {
+												localStorage.setItem('userUid', firebaseUser.user.uid)
+												}
+									   
+									   
+									   
+								   })
+									.catch(function(error) {
+									
+									
+									
+									
+								  // Handle Errors here.
+								  var errorCode = error.code;
+								  var errorMessage = error.message;
+								  if (errorCode === 'auth/wrong-password') {
+								   
+								   setTimeout(function(){ $("#durumyazi").html(" Hatalı Şifre Ve Email Adresi <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>");}, 2000);
+								   
+								   
+								  } else if(errorCode === 'auth/invalid-email'){
+									 setTimeout(function(){ $("#durumyazi").html("Email Adresi Yanlış Girildi <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>");
+								  }, 2000);
+									  }
+								  else if(errorCode === 'auth/user-not-found'){
+									 setTimeout(function(){ $("#durumyazi").html("Bu Email Adresine Kayıtlı Hesap Bulunmamaktadır. <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>");
+							}, 2000);
+										  }
+								  
+								  console.log(error);
+								  
+								  
+								  
+								  
+								  
+								});
+								
+								
+								
+// Update etme
+
+								firebase.database().ref().child('kullanicilar').orderByChild("uid").equalTo(localStorage.getItem('userUid')).on("child_added", function(snapshot) {
+								var degerler = snapshot.val();
+								var id = snapshot.key;
+								 // console.log(degerler.uid + " Id is : " + id);
+								  
+								   snapshot.ref.update({lat:pos.lat,lng:pos.lng});
+								   window.location = "portal.html";
+								  
+								});
+								
+								
+								
+// Değer Çekme
+
+
+firebase.database().ref().child('kullanicilar').orderByChild("uid").equalTo(localStorage.getItem('userUid')).on("child_added", function(snapshot) {
+			var degerler = snapshot.val();
+			var id = snapshot.key;
+			
+		
+			  
+			  $("#adres_yaz").text(degerler.adres_string);
+			  $("#profil_baslik").text(degerler.adsoyad);
+			  
+			});
+			
+			
+			
+			
+// Dosya Getirme
+
+	
+		const storageRef = firebase.storage().ref();
+				storageRef.child('kanal/-LHXqEsTu6ri0KVOMxAr-KANAL').getDownloadURL().then(function(url) {
+				  // `url` is the download URL for 'images/stars.jpg'
+
+				  
+
+				 
+				  console.log(url);
+				}).catch(function(error) {
+				  console.log(error);
+				});
+
+// Dosya Yükleme
+
+		const ref = firebase.storage().ref();
+	const file = $('#kanal_resim').get(0).files[0];
+	
+	
+	
+
+		if(file.type == "image/png" || file.type == "image/jpg" || file.type == "image/jpeg")
+		{
+
+			const name = (+new Date()) + '-' + "ABC";
+			const metadata = { contentType: file.type };
+			const task = ref.child(name).put(file, metadata);
+
+			task
+			  .then(url => console.log(url))
+		}

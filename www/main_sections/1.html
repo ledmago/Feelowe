@@ -1,0 +1,150 @@
+<div data-role="view" data-title="Inbox"  data-init="mobileListViewPullToRefresh" >
+    <header data-role="header">
+        <div data-role="navbar">
+		<a data-align="left" data-role="backbutton" class="km-widget km-button km-back" href="#:back"><span class="km-text">Back</span></a>
+           
+            <span data-role="view-title">as</span>
+            <a data-align="right" data-icon="source-code" data-click="goToSourceCode" data-role="button" title="Show this demo source code"></a>
+            <a data-align="right" data-role="button" class="nav-button" data-icon="home" href="#/"></a>
+        </div>
+    </header>
+
+    <ul id="pull-to-refresh-listview"></ul>
+	 <div id="menu3">
+  <button data-action="Save" data-role="link-">Click to Save</button>
+  <a data-align="left" data-role="backbutton" class="km-widget km-button km-back" href="#:back"><span class="km-text">Back</span></a>
+  <button data-action="Load">Click to Load</button>
+</div>
+</div>
+
+
+
+
+   
+
+
+
+
+
+
+
+<script type="text/x-kendo-tmpl" id="pull-to-refresh-template">
+    <div class="product-item">        
+        <h3>#:ProductName#12</h3>
+        <p>#:kendo.toString(UnitPrice, "c")#</p>
+    </div>
+</script>
+
+<script>
+    function mobileListViewPullToRefresh(e) {
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "https://demos.telerik.com/kendo-ui/service/Products/Read",
+                    dataType: "jsonp"
+                }
+            },
+            schema: {
+                total: function () { return 77; }
+            },            
+            serverPaging: true,
+            pageSize: 40
+        });
+
+        $("#pull-to-refresh-listview").kendoMobileListView({
+            dataSource: dataSource,
+            pullToRefresh: true,            
+            template: $("#pull-to-refresh-template").text()            
+        });
+    }
+    
+    function closeModalViewAdd() {
+        $("#modalview-add").kendoMobileModalView("close");
+    }
+
+    function addNew() {
+        addProductDataSource.add({
+            ProductName: $("#name").val(),
+            UnitPrice: Math.floor((Math.random() * 10) + 1)
+        });
+
+        closeModalViewAdd();
+    }
+
+    var addProductDataSource = new kendo.data.DataSource({
+        transport: {
+            create: {
+                url: "https://demos.telerik.com/kendo-ui/service/Products/Create",
+                dataType: "jsonp"
+            },
+            parameterMap: function (options, operation) {
+                if (operation !== "read" && options.models) {
+                    return { models: kendo.stringify(options.models) };
+                }
+            }
+        },
+        schema: {
+            model: {
+                id: "ProductID",
+                fields: {
+                    ProductID: { editable: false, nullable: true },
+                    ProductName: { type: "string" }
+                }
+            }
+        },
+        autoSync: true,
+        batch: true,
+        requestEnd: function () {
+            $("#name").val("");
+        }
+    });
+</script>
+
+<style>
+    .product-item {
+        font-size: 1.2;
+    }
+    .product-item h3 {
+        float: left;
+        margin: 0;
+        padding: 0;
+        height: 1.3em;
+        overflow: hidden;
+    }
+    .product-item p {
+        float: right;
+        margin: 0;
+        padding: 0;
+    }
+    .pullImage {
+        width: 64px;
+        height: 64px;
+        border-radius: 3px;
+        float: left;
+        margin-right: 10px;
+    }
+</style>
+
+<!--
+<script>
+
+	function Menu3(elem) {
+  this.onSave = function() { alert('saving') }
+  this.onLoad = function() { alert('loading') }
+
+  var self = this
+
+  elem.onclick = function(e) {
+    var target = e && e.target || event.srcElement
+var action = target.getAttribute('data-action')
+    if (action) {
+      self["on"+action]()
+    }
+  }
+}
+
+new Menu3(document.getElementById('menu3'))
+
+
+</script>
+<!-->

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kendo UI Mobile - Hybrid Framework</title>
+    <meta charset="utf-8">
+	
+    <link href="../styles/kendo.mobile.all.min.css" rel="stylesheet">
+	
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/kendo.all.min.js"></script>
+    <script src="content/shared/js/console.js"></script>
+    <script type="text/javascript" charset="utf-8">
+	
+ var NAV_JSON_URL = "content/mobile-nav.json";
+    </script>
+
+</head>
+<body id="examples">
+asd
+
+
+
+    <div data-role="view" data-title="Kendo UI" id="index" data-layout="" data-show="nullCurrentExample" data-init="initSearch,initPullToRefreshScroller">  
+	<header data-role="header">
+            <div data-role="navbar" id="normal">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+
+		
+		<a  data-role="listview-link" href="actionsheet/adamlar.html">Tıklas</a>
+<a  data-role="listview-link" href="http://google.com">Tıklaq</a>
+		
+        <ul data-role="listview" data-source="navDataSource" data-template="nav-template">
+            <script type="text/x-kendo-template" id="nav-template">
+                <a href="#: url #.html" style="#: data.new ? 'color: green' : '' #">#: text #</a>
+            </script>
+        </ul>
+    </div>
+
+    <div data-id="examples" data-role="layout" data-show="showDemoLayout" data-hide="removeView">
+        <header data-role="header">
+            <div data-role="navbar">
+                <a data-align="left" data-role="backbutton">Back</a>
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+    </div>
+	
+<script>
+    var pullTime, dataSource, image, counter = 0;
+
+    function updateClock() {
+        	
+    }
+
+    function initPullToRefreshScroller(e) {
+        dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "http://api.flickr.com/services/feeds/photos_public.gne",
+                    dataType: "jsonp",
+                    jsonpCallback: "jsonFlickrFeed",
+                    data: {
+                        tags: "cat,face",
+                        format: "json"
+                    }
+                }
+            },
+            schema: {
+                data: "items"
+            }
+        });
+	
+        dataSource.fetch(updateClock);
+
+        var scroller = e.view.scroller;
+
+        scroller.setOptions({
+            pullToRefresh: true,
+            pull: function() {
+                	console.log("sa");
+                setTimeout(function() { scroller.pullHandled(); }, 400);
+            }
+        })
+    }
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB1LgTo8RmO0Vk5-Aygn8BKKkshbiKqgdY",
+    authDomain: "feelowecom.firebaseapp.com",
+    databaseURL: "https://feelowecom.firebaseio.com",
+    projectId: "feelowecom",
+    storageBucket: "feelowecom.appspot.com",
+    messagingSenderId: "214822398287"
+  };
+  firebase.initializeApp(config);
+</script>
+    <script src="content/shared/js/mobile-examples.js"></script>
+		<script>
+	
+	
+	
+				$( document ).ready(function() {
+   if (localStorage.getItem("userUid") === null) {
+   alert("sa");
+					window.location.href="login/"; // Eğer Session Yoksa
+				}
+				
+});
+				</script>
+</body>
+</html>

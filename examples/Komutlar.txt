@@ -1,0 +1,5 @@
+-- Geri Gelme
+<a data-align="left" data-role="backbutton" class="km-widget km-button km-back" href="#:back"><span class="km-text">Back</span></a>
+
+Listview Link
+<a  data-role="listview-link" href="actionsheet/adamlar.html">Tıkla</a>

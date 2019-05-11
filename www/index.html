@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feelowe</title>
+    <meta charset="utf-8">
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+    <link href="../styles/kendo.uniform.mobile.min.css" rel="stylesheet">
+	  <link href="content/main.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/kendo.all.min.js"></script>
+	  <link href="../styles/kendo.common-nova.min.css" rel="stylesheet">
+	<script src="../js/messages/kendo.messages.tr-TR.min.js"></script>
+	<script src="../js/cultures/kendo.culture.tr-TR.min.js"></script>
+	<script src="content/Loader.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Rajdhani:400,600,700" rel="stylesheet">
+	<script src="content/shared/js/console.js"></script>
+	
+    <script type="text/javascript" charset="utf-8">
+	
+
+   if (localStorage.getItem("userUid") === null) {
+   
+					window.location.href="login/"; // Eğer Session Yoksa
+				}
+				
+
+        var NAV_JSON_URL = "content/mobile-nav.json";
+    </script>
+</head>
+<body id="examples">
+
+	
+
+<div id="GenelLoader"><span id="Loader_yazi">Feel<bold>owe</bold></span></div>
+
+<div id="kmsloader" class="km-loader km-widget" data-role="loader" style=""><span class="km-loading km-spin"></span><span class="km-loading-left"></span><span class="km-loading-right"></span><h1>Loading...</h1></div>
+
+
+
+
+<!-- Footer Panel -->
+
+<div id="footernav" >
+
+<li id="main_index" class="navbar_item selected" onclick="window.location='#/';navbar($(this))">
+<i class="navitem fas fa-house-damage"  style="font-size: 22px;"></i>
+<span class="k-badge km-badge">25</span>
+</li>
+
+<li data-badge="25" id ="main_sections-1" class="navbar_item" onclick="window.location='#main_sections/1.html';navbar($(this))">
+<i class="navitem fab fa-searchengin" style="font-size: 25px;"></i>
+<span class="k-badge km-badge">25</span>
+</li>
+
+
+<li data-badge="25" id ="main_sections-discover" class="navbar_item" onclick="window.location='#main_sections/discover.html';navbar($(this))">
+<i class="navitem fab fa-itunes-note"   style="font-size: 25px;"></i>
+</li>
+
+
+<li data-badge="25" id="actionsheet-adamlar" class="navbar_item" onclick="window.location='#actionsheet/adamlar.html';navbar($(this))">
+<i class="navitem fab fa-gratipay" style="color:red"  ></i>
+</li>
+
+
+<li data-badge="15" id="actionsheet-chat" class="navbar_item" onclick="window.location='#actionsheet/chat.html';navbar($(this))">
+<i class="navitem fas fa-user"></i>
+<span class="k-badge km-badge">15</span>
+</li>
+</div><!-- Footer Nav Bar End -->
+
+
+
+
+
+
+<div data-role="drawer" id="left-drawer" style="width: 15em;" data-title="Ayarlar" data-use-native-scrolling="true">
+    <header data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title"></span>
+        </div>
+    </header>
+
+    <ul data-role="listview" class="km-listview-icons">
+        <li data-icon="camera">Menu</li>
+		        <li data-icon="camera">Menu</li>
+				        <li data-icon="camera">Menu</li>
+
+    </ul>
+</div>
+<div data-role="drawer" id="right-drawer" style="width: 20em;" data-title="Mesajlar" data-position="right" data-views="['index']" data-use-native-scrolling="true">
+  <header data-role="header">
+        <div data-role="navbar">
+            <span data-role="view-title"></span>
+        </div>
+    </header>
+
+    <ul data-role="listview" class="km-listview-icons">
+    <li data-icon="camera">Menu</li>
+		        <li data-icon="camera">Menu</li>
+				        <li data-icon="camera">Menu</li>
+    </ul>  
+</div>
+
+
+
+<script>
+    // reset global drawer instance, for demo purposes
+    kendo.mobile.ui.Drawer.current = null;
+</script>
+
+
+
+
+    <div data-role="view" data-title="Kendo UI" id="index" data-layout="" data-show="nullCurrentExample" data-init="initSearch,initPullToRefreshScroller" >  
+	<header data-role="header">
+            <div data-role="navbar" id="normal" class="ananav">
+                <span>Feelowe</span>
+            </div>
+        </header>
+
+	
+		
+		 <div id="example">
+	
+            <div class="demo-section k-content">
+				
+				<div id="main-content">
+					<div id="cont-post">
+					
+						
+						<div id="post-top">
+						<div class="profile_photo" style="background: #b1b1b1;"></div>
+						<h3 class="post-username" style="background: #b1b1b1;color: #b1b1b1;">Mutlu Kayaoğulları</h3>
+						</div>
+						<div id="post-top">
+						<div class="profile_photo" style="background: #b1b1b1;"></div>
+						<h3 class="post-username" style="background: #b1b1b1;color: #b1b1b1;">Mutlu Kayaoğulları</h3>
+						</div>
+				</div>
+				
+				  <script id="gelen_post" type="text/x-kendo-template">
+						<div id="post-top2" data-role="touch" data-bind="events: { hold: didTabHold }">
+						<div class="profile_photo" style="background:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgda8_QuKoNGf6lBmowPrLO0hHikQFdwcQ3qbiQL-GJjbYHoop)"></div>
+						<h3 class="post-username" >#= userUid # (<span>#= content #</span>)</h3>
+					
+						</div>
+				
+				
+					
+					
+					</script>
+					
+					
+					
+
+				
+				
+				
+				
+				</div>
+				
+
+            </div>
+	<br>
+
+          
+
+		  
+		  
+		  <div id="konumgoster"></div>
+		  <script>
+		  
+		  // Kordinatların Alınması
+		  $( document ).ready(function() {
+
+		  
+		  //Konum Ayarları
+		  
+		  
+	
+		 if(!check_security())
+		 {
+		 
+		 	//startLoading(500); 
+								  
+								  
+								  var x = document.getElementById("konumgoster");
+
+								function getLocation() {
+								// Loader'i Başlat
+								  if (navigator.geolocation) {
+									navigator.geolocation.getCurrentPosition(showPosition);
+									// Burda Kapat
+									
+									
+								  } else { 
+									x.innerHTML = "Geolocation is not supported by this browser.";
+									//hideLoader(); // Loader'i Kapat
+								  }
+								}
+
+
+								function showPosition(position) {
+								  x.innerHTML = "Latitude: " + position.coords.latitude + 
+								  "<br>Longitude: " + position.coords.longitude;
+								
+									Konum_bilgileri.lat = position.coords.latitude; // Kordinatları Objeye Aktar.
+									Konum_bilgileri.long = position.coords.longitude;
+									Kanal_Yukle.post_getir(); // Postları Getir
+								
+								}
+								  getLocation();
+		 
+		 }
+		 else{
+		 
+									Konum_bilgileri.lat = getUrlParameter("lat"); // Kordinatları Objeye Aktar.
+									Konum_bilgileri.long = getUrlParameter("long");
+									Kanal_Yukle.post_getir(); // Postları Getir
+		 
+		 }
+		  
+		  
+								
+				  });
+		  
+		  // ---------------------------- Kordinatların Alınması -----------------------------------------
+		  </script>
+		  
+            <script>
+			
+			// Post Yüklenmesi -------
+			
+                    
+              
+            </script>
+            <style>
+                .demo-section {
+                 overflow: auto;
+                }
+                .metrotable {
+                	width: 100%;
+                	border-collapse: collapse;
+                }
+                
+                .metrotable > thead > tr > th 
+                {
+                	font-size: 1.3em;
+                	padding-top: 0;
+                	padding-bottom: 5px;
+                }
+            </style>
+        </div>
+
+    </div>
+
+    <div data-id="examples" data-role="layout" data-show="showDemoLayout" data-hide="removeView">
+        <header data-role="header">
+            <div data-role="navbar">
+                <a data-align="left" data-role="backbutton">Back</a>
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+    </div>
+	
+<script>
+    // Aşağı Çekince Refresh Etme
+    var pullTime, dataSource, image, counter = 0;
+	gelen_post = kendo.template($("#gelen_post").html());
+	
+    function initPullToRefreshScroller(e) {
+	var scroller = e.view.scroller;
+
+        scroller.setOptions({
+            pullToRefresh: true,
+            pull: function() {
+                	Kanal_Yukle.post_refresh();
+					
+                setTimeout(function() { scroller.pullHandled();
+
+					
+					kendo.bind($(document.body), Kanal_Yukle.kanal_hold);
+				
+				}, 400);
+            }
+        })
+		
+		
+		
+    }
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB1LgTo8RmO0Vk5-Aygn8BKKkshbiKqgdY",
+    authDomain: "feelowecom.firebaseapp.com",
+    databaseURL: "https://feelowecom.firebaseio.com",
+    projectId: "feelowecom",
+    storageBucket: "feelowecom.appspot.com",
+    messagingSenderId: "214822398287"
+  };
+  firebase.initializeApp(config);
+  const firestore = firebase.firestore();
+  const settings = {/* your settings... */ timestampsInSnapshots: true};
+  firestore.settings(settings);
+</script>
+    <script src="content/shared/js/mobile-examples.js"></script>
+	    <script src="content/main.js"></script>
+		<script type="text/javascript">
+// BURASI LOADER KISMI
+$("#GenelLoader").fakeLoader({
+
+timeToHide:300000, //Time in milliseconds for fakeLoader disappear
+
+zIndex:"99999999999999999999",//Default zIndex
+
+spinner:"spinner6",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+
+bgColor:"rgb(231, 76, 60)", //Hex, RGB or RGBA colors
+
+
+});
+
+$( document ).ready(function() {
+$("#GenelLoader").fadeOut();
+//setTimeout(function(){   $("#GenelLoader").fadeOut(); }, 1000);
+ 
+});
+</script>
+</body>
+</html>

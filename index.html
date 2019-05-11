@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feelowe</title>
+    <meta charset="utf-8">
+	<meta name='viewport' www/content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+	  <link href="www/content/main.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+	<script src="www/content/Loader.js"></script>
+	
+    <script type="text/javascript" charset="utf-8">
+	setTimeout(function(){ 
+
+			  if (localStorage.getItem("userUid") === null) {
+   
+					window.location.href="www/login/index.html"; // Eğer Session Yoksa
+				}
+				else
+				{
+				window.location.href="www/index.html"; 
+				}
+
+
+	}, 1000);
+
+ 
+				
+
+   
+    </script>
+</head>
+<body id="examples">
+<div id="GenelLoader"></div>
+
+	    <script src="www/content/main.js"></script>
+		<script type="text/javascript">
+
+$("#GenelLoader").fakeLoader({
+
+timeToHide:300000, //Time in milliseconds for fakeLoader disappear
+
+zIndex:"99999999999999999999",//Default zIndex
+
+spinner:"spinner6",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+
+bgColor:"rgb(231, 76, 60)", //Hex, RGB or RGBA colors
+
+
+});
+
+</script>
+</body>
+</html>

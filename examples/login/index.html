@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login/Logout animation concept</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+
+      <link rel="stylesheet" href="css/style.css?v=5">
+
+  	<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	  <script type="text/javascript" src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+  
+  <style>
+  body{
+  webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+  }
+	.refresh_buton{padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;}
+  
+  </style>
+</head>
+
+<body>
+  <script>
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB1LgTo8RmO0Vk5-Aygn8BKKkshbiKqgdY",
+    authDomain: "feelowecom.firebaseapp.com",
+    databaseURL: "https://feelowecom.firebaseio.com",
+    projectId: "feelowecom",
+    storageBucket: "feelowecom.appspot.com",
+    messagingSenderId: "214822398287"
+  };
+  firebase.initializeApp(config);
+</script>
+  <div class="cont">
+  <div class="demo">
+    <div class="login" id="girisekrani" style="
+   
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+	    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    transform: scale(1);
+	";>
+<!--<div id="logo" style="
+    width: 150px;
+    height: 150px;
+    border: 4px solid #FFF;
+    border-radius: 100%;
+    background-image: url(&quot;css/logoHam.fw.png&quot;);
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: 65px;
+    left: 0px;
+    right: 0;
+    margin: auto;
+"></div>-->
+      <img src="css/logoHam.fw.png" style="
+	      margin: auto;
+    margin: auto;
+    position: absolute;
+    top: 133px;
+    left: 0;
+    /* bottom: 0; */
+    right: 0;
+    width: 51px;
+    /* border-radius: 100%; */
+    opacity: 0.85;
+    margin-top: 13px;">
+	
+	<!--
+	  <img src="css/logo2.fw.png" style="margin: auto;
+    position: absolute;
+    top: 23px;
+    left: 0;
+    /* bottom: 0; */
+    right: 0;
+    width: 70px;
+    border-radius: 100%;
+    opacity: 0.9;
+    margin-top: 13px;">-->
+	
+      <div class="login__form">
+	  	<div class="isim_yazi">Feelowe</div>
+        <div class="login__row">
+		
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" id="kadi" class="login__input name" placeholder="Kullanıcı Adınız"/>
+        </div>
+        <div class="login__row">
+          <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+          </svg>
+          <input type="password" id="sifre" class="login__input pass" placeholder="Şifeniz"/>
+        </div>
+        <button type="button" class="login__submit x">Giriş</button>
+        <p class="login__signup">Hesabınız yok mu ? &nbsp;<a onclick="kayitekrani()">Kaydolun.</a></p>
+      </div>
+    </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 <div class="login" id="kayitekrani" style="
+   
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+	";>
+
+      <img src="logo.png" style="margin: auto;
+    position: absolute;
+    top: 23px;
+    left: 0;
+    /* bottom: 0; */
+    right: 0;">
+      <div class="login__form" style="  top: 232px;">
+	  	<div class="isim_yazi">Feelowe</div>
+        <div class="login__row">
+		<form>
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" id="adsoyad_kayit" class="login__input name" placeholder="Ad Soyad" required/>
+        </div>
+		 <div class="login__row">
+		
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" id="kadi_kayit" class="login__input name" placeholder="Kullanıcı Adı" required/>
+        </div>
+		 <div class="login__row">
+		
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" id="email_kayit" class="login__input name" placeholder="Email Adresi" required/>
+        </div>
+	
+        <div class="login__row">
+          <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+          </svg>
+          <input type="password" id="sifre_kayit" class="login__input pass" placeholder="Şifeniz" required/>
+        </div>
+        <button type="button" id="kayitolbutton" class="login__submit">Kayıt Ol</button>
+</form>       
+	   <p class="login__signup"><a id="uyari_yazi"></a><br>Hesabınız var mı ? &nbsp;<a onclick="girisekrani()">Giriş Yapın</a></p>
+      </div>
+    </div>
+	
+	
+    <div class="app">
+     <div style="position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    height: 110px;
+    font-size: 13px;
+    color: #EBEBEB;
+   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+   text-align:center;
+    line-height: 28px;" ><img src="loading.gif" style=" width: 100px;height:100px"><div id="durumyazi">Yükleniyor...</div></div>
+    </div>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+<style>
+
+#kayitolbutton{
+transition: all 1s;}
+#kadi_kayit{
+border-radius:15px;}
+	#uyari_yazi
+	{
+	color:#3f04fc;font-size:16px;}
+</style>
+<script>
+
+ $( document ).ready(function() {
+  
+  var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+
+
+
+
+
+
+  if (localStorage.getItem("userUid") === null) {
+				
+				}
+				else{
+				
+				window.location.href="../main.html";
+				
+				
+				
+				
+				}
+
+
+var messages = new Firebase('https://lobby-9e9e4.firebaseio.com');
+
+ var ref = firebase.database().ref().child('kullanicilar');
+ 
+ /*ref.orderByChild("kadi").equalTo("ledmagos").on("child_added", function(snapshot) {
+var degerler = snapshot.val();
+var id = snapshot.key;
+  console.log(degerler.adsoyad + "  " + degerler.email);
+});*/
+
+
+
+
+
+
+
+ 
+$("#kadi_kayit").on("change paste keyup", function() {
+ 
+ 
+ 
+   
+  firebase.database().ref().child("kullanicilar").orderByChild("kadi").equalTo($(this).val()).once("value",snapshot => {
+    const userData = snapshot.val();
+    if (userData){
+      		 $("#kayitolbutton").attr("disabled", true);
+   $("#kayitolbutton").css("background", "gray");
+    $("#kadi_kayit").css("background", "#b52b2b");
+   $("#uyari_yazi").text("Kullanıcı Adı Kullanımda");		  
+    }
+	else
+	{
+	$("#kayitolbutton").removeAttr("disabled");
+   $("#kayitolbutton").css("background", "#FF3366");
+   $("#kadi_kayit").css("background", "transparent");
+		$("#uyari_yazi").text("");
+	}
+	
+	
+});
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+   
+   
+});
+
+
+
+
+
+
+
+
+
+setTimeout(function(){  $(".login").css("transform", "scale(1)");
+   $(".login").css("-webkit-transform", "scale(1)");  }, 500);
+   
+   
+  $(".login__submit").click(function(){
+  setTimeout(function(){ girisyap($("#kadi").val(),$("#sifre").val())}, 1000);
+  });
+  
+  
+  
+   $("#kayitolbutton").click(function(){
+  setTimeout(function(){ kayitfunctiontriggered($("#adsoyad_kayit").val(),$("#email_kayit").val(),$("#kadi_kayit").val(),$("#sifre_kayit").val())}, 1000);
+  });
+  
+  
+  
+  
+ function kayitfunctiontriggered(adsoyad_kayit,email_kayit,kadi_kayit,sifre_kayit)
+ {
+ 
+ 
+
+  firebase.database().ref().child("kullanicilar").orderByChild("kadi").equalTo(kadi_kayit).once("value",snapshot => {
+    const userData = snapshot.val();
+    if (userData){
+      setTimeout(function(){ $("#durumyazi").html("Kullanıcı Adı Kullanımda <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>"); }, 2000);
+					  
+    }
+	else{
+	// Kullanıcı Adı Kullanılmıyorsa
+				 var islem2 = firebase.auth().createUserWithEmailAndPassword(email_kayit, sifre_kayit).then(function(firebaseUser) {
+						   console.log("Giriş Başarılı"); // Giriş İşlemi Gerçekleşti Local Storage
+						   console.log(firebaseUser.user.uid);
+							 $("#durumyazi").html("Yönelndiriliyorsunuz ....");
+							 
+							 
+							 
+						   
+									localStorage.removeItem('userUid');
+									localStorage.setItem('userUid', firebaseUser.user.uid)
+									
+									var kullanici_ekle = {uid:firebaseUser.user.uid, timestamp: new Date().toString(),adsoyad:adsoyad_kayit,email:email_kayit,kadi:kadi_kayit,sifre:sifre_kayit,lat:0,lng:0,adres_string:0};
+									  var ref = firebase.database().ref().child('kullanicilar');
+									  var messageRef = ref.push(kullanici_ekle);
+								
+									window.location.href="konum.html?lat=" + getUrlParameter('lat') + "&lng=" + getUrlParameter('lng');
+									
+						   
+						   })
+					   .catch(function(error) {
+						
+						
+						
+						
+					  // Handle Errors here.
+					  var errorCode = error.code;
+					  var errorMessage = error.message;
+					  if (errorCode === 'auth/wrong-password') {
+					   
+					   setTimeout(function(){ $("#durumyazi").html(" Hatalı Şifre Ve Email Adresi <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>"); }, 2000);
+					   
+					   
+					   
+					  } else if(errorCode === 'auth/invalid-email'){
+					  setTimeout(function(){ $("#durumyazi").html("Email Adresi Yanlış Girildi <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>"); }, 2000);
+						 
+					  }
+					  else if(errorCode === 'auth/email-already-in-use'){
+						
+						setTimeout(function(){ $("#durumyazi").html("Bu Email Adresine Kayıtlı Hesap Bulunmaktadır. <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>"); }, 3000);
+					  }
+					  
+					  console.log(error);
+					  
+					  
+					  
+					  
+					  
+					});
+	
+	}
+});
+ 
+ 
+ 
+			
+ 
+ 
+	
+ 
+ 
+ }
+  
+ function girisyap(kadi,sifre)
+ {
+			
+						var islem = firebase.auth().signInWithEmailAndPassword(kadi, sifre).then(function(firebaseUser) {
+				   console.log("Giriş Başarılı"); // Giriş İşlemi Gerçekleşti Local Storage
+				   console.log(firebaseUser.user.uid);
+				   
+				   
+				   if (localStorage.getItem("userUid") === null) {
+							localStorage.setItem('userUid', firebaseUser.user.uid);
+							
+								window.location.href="../main.html";
+							}
+				   
+				   
+				   
+			   })
+				.catch(function(error) {
+				
+				
+				
+				
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  if (errorCode === 'auth/wrong-password') {
+			   
+			   setTimeout(function(){ $("#durumyazi").html(" Hatalı Şifre Ve Email Adresi <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>");}, 2000);
+			   
+			   
+			  } else if(errorCode === 'auth/invalid-email'){
+				 setTimeout(function(){ $("#durumyazi").html("Email Adresi Yanlış Girildi <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>");
+			  }, 2000);
+				  }
+			  else if(errorCode === 'auth/user-not-found'){
+				 setTimeout(function(){ $("#durumyazi").html("Bu Email Adresine Kayıtlı Hesap Bulunmamaktadır. <button class='refresh_buton' onclick='location.reload();'>Tekrar Dene</button>");
+		}, 2000);
+				 	  }
+			  
+			  console.log(error);
+			  
+			  
+			  
+			  
+			  
+			});
+
+
+
+ }    });
+ 
+ function kayitekrani()
+ {
+ 
+ $("#girisekrani").css("transform", "scale(0)");
+//: ;
+
+
+     setTimeout(function(){ 
+	  $("#kayitekrani").css("position", "absolute");
+ $("#kayitekrani").css("transform", "scale(0)");
+   $("#kayitekrani").css("display", "block");
+     $("#kayitekrani").css("transform", "scale(1)");
+  }, 500);
+
+
+ 
+ 
+ }
+ 
+ function girisekrani()
+ {
+ 
+ $("#kayitekrani").css("transform", "scale(0)");
+//: ;
+
+
+     setTimeout(function(){ 
+	  $("#girisekrani").css("position", "absolute");
+ $("#girisekrani").css("transform", "scale(0)");
+   $("#girisekrani").css("display", "block");
+     $("#girisekrani").css("transform", "scale(1)");
+  }, 500);
+
+
+ 
+ 
+ }
+  setTimeout(function(){  $("#kayitekrani").css("transform", "scale(0)");}, 2000);
+  
+  
+  
+  
+
+  
+
+
+</script>
+
+
+</body>
+
+</html>
